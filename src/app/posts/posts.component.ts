@@ -26,6 +26,7 @@ export class PostsComponent implements OnInit {
           this.posts.unshift(post);
         },
         (error: AppError) => {
+          this.posts.splice(0,1);
           if(error instanceof BadRequestError){
             alert('Post could not be created..Bad Request...');
           }else{
@@ -48,13 +49,14 @@ export class PostsComponent implements OnInit {
    }
 
    deletePost(post){
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index,1);
+    
     this.postservice.delete(post)
     .subscribe(
-      () => {
-        let index = this.posts.indexOf(post);
-        this.posts.splice(index,1);
-      },
+     null,
     (error:AppError)=> {
+        this.posts.splice(index,0,post);
         if(error instanceof NotFoundError){
           alert('This post has already been deleted');
         }else{
