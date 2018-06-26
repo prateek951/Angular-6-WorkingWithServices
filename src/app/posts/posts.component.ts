@@ -21,8 +21,8 @@ export class PostsComponent implements OnInit {
      input.value = '';
       this.postservice.create(post)
       .subscribe(
-        (response: Response) => {
-          post['id'] = response.json().id;
+        newPost => {
+          post['id'] = newPost.id;
           this.posts.unshift(post);
         },
         (error: AppError) => {
@@ -38,8 +38,8 @@ export class PostsComponent implements OnInit {
    updatePost(post){
      this.postservice.update(post)
      .subscribe(
-       response => {
-        console.log(response);
+       updatedPost => {
+        console.log(updatedPost);
       },
        error => {
         alert('An unexpected error occured');
@@ -50,8 +50,7 @@ export class PostsComponent implements OnInit {
    deletePost(post){
     this.postservice.delete(post)
     .subscribe(
-      response => {
-        console.log(response);
+      () => {
         let index = this.posts.indexOf(post);
         this.posts.splice(index,1);
       },
@@ -70,8 +69,8 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.postservice.getAll()
     .subscribe(
-      response => {
-        this.posts = response.json();
+      posts => {
+        this.posts = posts;
       });
   }
 
