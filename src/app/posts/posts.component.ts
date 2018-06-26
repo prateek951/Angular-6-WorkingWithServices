@@ -11,7 +11,7 @@ import { BadRequestError } from '../common/bad-request-error';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts:any[];
+  posts:any[];    
   constructor(private postservice: PostService) {
     
    }
@@ -19,7 +19,7 @@ export class PostsComponent implements OnInit {
    createPost(input: HTMLInputElement){
      let post = {title : input.value};
      input.value = '';
-      this.postservice.createPost(post)
+      this.postservice.create(post)
       .subscribe(
         (response: Response) => {
           post['id'] = response.json().id;
@@ -36,7 +36,7 @@ export class PostsComponent implements OnInit {
         });
    }
    updatePost(post){
-     this.postservice.updatePost(post)
+     this.postservice.update(post)
      .subscribe(
        response => {
         console.log(response);
@@ -48,7 +48,7 @@ export class PostsComponent implements OnInit {
    }
 
    deletePost(post){
-    this.postservice.deletePost(post)
+    this.postservice.delete(post)
     .subscribe(
       response => {
         console.log(response);
@@ -68,7 +68,7 @@ export class PostsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.postservice.getPosts()
+    this.postservice.getAll()
     .subscribe(
       response => {
         this.posts = response.json();
