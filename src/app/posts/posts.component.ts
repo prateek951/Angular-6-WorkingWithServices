@@ -28,7 +28,10 @@ export class PostsComponent implements OnInit {
      this.postservice.updatePost(post)
      .subscribe(response => {
        console.log(response);
-     })
+     },error => {
+       alert('An unexpected error occured');
+       console.log(error);
+     });
    }
 
    deletePost(post){
@@ -37,7 +40,7 @@ export class PostsComponent implements OnInit {
       console.log(response);
       let index = this.posts.indexOf(post);
       this.posts.splice(index,1);
-    })
+    });
    }
 
 
@@ -45,6 +48,9 @@ export class PostsComponent implements OnInit {
     this.postservice.getPosts()
     .subscribe(response => {
       this.posts = response.json();
+    },error => {
+      alert('An unexpected error occured');
+      console.log(error);
     })
   }
 
