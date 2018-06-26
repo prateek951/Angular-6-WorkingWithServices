@@ -1,3 +1,10 @@
-<p>
-  home works!
-</p>
+<h1>Home Page</h1>
+
+<p *ngIf="isLoggedIn">Welcome {{service.currentUser.name}}</p>
+
+<ul>
+  <li><a [routerLink]="[ '/admin' ]" *ngIf="isloggedIn
+    && service.currentUser.admin">Admin</a></li>
+  <li><a [routerLink]="[ '/login']" *ngIf="!isLoggedIn">Login</a></li>
+  <li><a *ngIf="isLoggedIn"(click)="service.logout()">Logout</a></li>
+</ul>

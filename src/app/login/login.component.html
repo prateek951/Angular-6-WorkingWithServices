@@ -1,0 +1,13 @@
+<form class="form-login" #f (ngSubmit)="onLogin(f.value)">
+  <h2 class="form-login-heading">Login here</h2>
+  <div *ngIf="invalidLogin" class="btn btn-danger">
+    Invalid username or password
+  </div>
+  <label for="inputEmail" class="sr-only">Email</label>
+  <input type="text" name="email" id="inputEmail" placeholder="Enter the email here"
+  class="form-control" ngModel required autofocus>
+  <label for="inputPassword">Password</label>
+  <input type="password" name="password" id="inputPassword" placeholder="Enter the password"
+  class="form-control" ngModel required autofocus>
+  <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+</form>
