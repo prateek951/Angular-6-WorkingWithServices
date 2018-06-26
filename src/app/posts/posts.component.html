@@ -1,0 +1,14 @@
+<input type="text" placeholder="Enter the post to create"
+#title (keyup.enter)="createPost(title)"> 
+
+<ul>
+  <li *ngFor="let post of posts">
+    <span>Id of the post : </span>
+    <h1>Title of the post : {{post.title}}</h1>
+    <p>{{post.body}}</p>
+    <button (click)="updatePost(post)"
+    class="btn btn-primary">Update Post</button>
+    <button (click)="deletePost(post)"
+    class="btn btn-danger">Delete Post</button>
+  </li>
+</ul>
